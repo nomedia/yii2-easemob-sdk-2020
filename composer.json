@@ -1,0 +1,39 @@
+{
+  "name": "nomedia/yii2-easemob-sdk-2020",
+  "type": "yii2-extension",
+  "description": "环信 easemob API for Yii 2.0",
+  "keywords": ["yii2", "easemob", "im", "sdk"],
+  "homepage": "https://github.com/nomedia/yii2-easemob-sdk",
+  "license": "MIT",
+  "support": {
+    "issues": "https://github.com/nomedia/yii2-easemob-sdk-2020/issues",
+    "wiki": "https://github.com/nomedia/yii2-easemob-sdk-2020/wiki",
+    "source": "https://github.com/nomedia/yii2-easemob-sdk-2020"
+  },
+  "authors": [
+    {
+      "name": "nomedia",
+      "email": "hixiaoyou@gmail.com",
+      "homepage": "https://github.com/nomedia",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0",
+    "yiisoft/yii2": "*",
+    "guzzlehttp/guzzle": "~5.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": ">=4.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "nomedia\\Easemob\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "nomedia\\Easemob\\Tests\\": "tests/"
+    }
+  }
+}

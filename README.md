@@ -92,5 +92,4 @@ $data = Yii::$app->easemob->exportChatMessages();
 
 ```php
 $data = Yii::$app->easemob->sendCmd('users', ['user1', 'users2'], 'action1', ['key1' => 'value1'], 'admin');
-```# yii2-easemob-sdk-2020
-# yii2-easemob-sdk-2020
+```
