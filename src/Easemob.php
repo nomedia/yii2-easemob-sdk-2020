@@ -5,6 +5,7 @@
  * Date: 2020/03/23
  * Time: 下午 14:21
  */
+
 namespace nomedia\Easemob;
 
 use GuzzleHttp\Client;
@@ -129,7 +130,7 @@ class Easemob extends Component
             'defaults' => [
             ]
         ]);
-        if (1==1) {
+        if (1 == 1) {
             $this->cache = Yii::createObject([
                 'class' => 'yii\caching\FileCache',
             ]);
@@ -163,6 +164,42 @@ class Easemob extends Component
             if (trim($nickname) !== '') {
                 $data['nickname'] = $nickname;
             }
+            $response = $this->apiClient->post(
+                $this->apiBaseUrl . self::PATH_CREATE_USER,
+                [
+                    'headers' => ['Authorization' => $this->getTokenHeader()],
+                    'json' => $data
+                ]
+            );
+            $result = $response->json();
+            return isset($result['entities']) ? reset($result['entities']) : false;
+        } catch (\Exception $ex) {
+            return false;
+        }
+    }
+
+
+    /**
+     * 创建多个用户
+     * @param string $username 用户名
+     * @param string $data 用户信息
+     * @param bool $checkDuplicate 是否检查有重复的用户，重复报错，不检查则直接返回重复的用户信息
+     * @return bool|mixed
+     */
+    public function createMultiUser($username, $data, $checkDuplicate = true)
+    {
+        // 先尝试获取用户
+        if (!$checkDuplicate) {
+            $result = $this->getUser($username);
+            if ($result !== false) {
+                return $result;
+            }
+        }
+        try {
+
+            //   if (trim($nickname) !== '') {
+            //    $data['nickname'] = $nickname;
+            //  }
             $response = $this->apiClient->post(
                 $this->apiBaseUrl . self::PATH_CREATE_USER,
                 [
@@ -263,7 +300,7 @@ class Easemob extends Component
         try {
             $path = self::PATH_EXPORT_CHAT_MESSAGES;
 
-            var_dump($this->apiBaseUrl . $path."/2020032310");
+            var_dump($this->apiBaseUrl . $path . "/2020032310");
 
             $data = [];
             if (is_numeric($lastTimestamp)) {
@@ -276,7 +313,7 @@ class Easemob extends Component
                 $data['cursor'] = $cursor;
             }
             $response = $this->apiClient->get(
-                $this->apiBaseUrl . $path."/2020032315",
+                $this->apiBaseUrl . $path . "/2020032315",
                 [
                     'headers' => ['Authorization' => $this->getTokenHeader()],
 
@@ -396,7 +433,7 @@ class Easemob extends Component
     {
         if (!isset($token['access_token'])) {
             throw new InvalidParamException('The easemob access_token must be set.');
-        } elseif(!isset($token['expires_at'])) {
+        } elseif (!isset($token['expires_at'])) {
             throw new InvalidParamException('easemob access_token expire time must be set.');
         }
         $this->token = $token;
@@ -409,7 +446,7 @@ class Easemob extends Component
      */
     protected function getUserTokenHeader($token)
     {
-        return 'Bearer '.$token;
+        return 'Bearer ' . $token;
     }
 
     /**
@@ -419,7 +456,7 @@ class Easemob extends Component
      */
     protected function getTokenHeader()
     {
-        return 'Bearer '.$this->getToken();
+        return 'Bearer ' . $this->getToken();
     }
 
     /**
@@ -462,6 +499,7 @@ class Easemob extends Component
             $name
         );
     }
+
     /**
      * 缓存数据
      * @param string $name 缓存Key
