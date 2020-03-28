@@ -27,7 +27,17 @@ class ExportChatMessagesTest extends \PHPUnit\Framework\TestCase
 
         var_dump("------export------2");
         $ret = $easemob->exportChatMessages();
-        var_dump($ret);
+
+
+        $uri=$ret["data"][0]["url"];
+
+     var_dump($ret["data"][0]["url"]);
+
+        $lines = gzfile($uri);
+        foreach ($lines as $line) {
+            var_dump($line);
+        }
+//var_dump($ret);
     }
 
 }

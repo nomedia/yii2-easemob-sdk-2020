@@ -29,7 +29,7 @@ class SendMsgTest extends \PHPUnit\Framework\TestCase
 
         $targetType = Easemob::TARGET_TYPE_USERS;
         $target = [
-            'username2',
+            '131119',
         ];
         $msg = [
             'type' => "txt",

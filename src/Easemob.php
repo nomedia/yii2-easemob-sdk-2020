@@ -186,15 +186,9 @@ class Easemob extends Component
      * @param bool $checkDuplicate 是否检查有重复的用户，重复报错，不检查则直接返回重复的用户信息
      * @return bool|mixed
      */
-    public function createMultiUser($username, $data, $checkDuplicate = true)
+    public function createMultiUser($data, $checkDuplicate = true)
     {
-        // 先尝试获取用户
-        if (!$checkDuplicate) {
-            $result = $this->getUser($username);
-            if ($result !== false) {
-                return $result;
-            }
-        }
+
         try {
 
             //   if (trim($nickname) !== '') {
@@ -293,27 +287,16 @@ class Easemob extends Component
      * @param string $cursor 当前导出分页游标（上次导出时返回的，返回空则表示无下一页）
      * @return bool|mixed
      */
-    public function exportChatMessages($lastTimestamp = '', $limit = 1000, $cursor = '')
+    public function exportChatMessages($datetime = "2020032715")
     {
 
 
         try {
             $path = self::PATH_EXPORT_CHAT_MESSAGES;
 
-            var_dump($this->apiBaseUrl . $path . "/2020032310");
 
-            $data = [];
-            if (is_numeric($lastTimestamp)) {
-                $data['ql'] = 'select * where timestamp>' . $lastTimestamp;
-            }
-            if ($limit > 0) {
-                $data['limit'] = $limit;
-            }
-            if ($cursor !== '') {
-                $data['cursor'] = $cursor;
-            }
             $response = $this->apiClient->get(
-                $this->apiBaseUrl . $path . "/2020032315",
+                $this->apiBaseUrl . $path . "/" . $datetime,
                 [
                     'headers' => ['Authorization' => $this->getTokenHeader()],
 
