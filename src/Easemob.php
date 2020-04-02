@@ -352,6 +352,31 @@ class Easemob extends Component
 
 
     /**
+     * 获取App中所有的群组
+     * @return bool|mixed
+     */
+    public function getGroup()
+    {
+        try {
+            $path = "/chatgroups";
+
+
+            $response = $this->apiClient->get(
+                $this->apiBaseUrl . $path,
+                [
+                    'headers' => ['Authorization' => $this->getTokenHeader()],
+
+                ]
+            );
+            $result = $response->json();
+            return isset($result['data']) ? $result : false;
+        } catch (\Exception $ex) {
+            return false;
+        }
+    }
+
+
+    /**
      * 发送普通消息
      * @param string $target_type 消息目标类型，users 给用户发消息，chatgroups 给群发消息，chatrooms 给聊天室发消息
      * @param array $target 消息目标数组

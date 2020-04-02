@@ -8,11 +8,38 @@
 
 namespace nomedia\Easemob\Tests;
 
+use backend\models\easemob\EasemobUser;
 use nomedia\Easemob\Easemob;
 use Yii;
 
 class SendMsgTest extends \PHPUnit\Framework\TestCase
 {
+
+
+    public static function testGetGroup()
+    {
+
+
+        //sendMessage
+
+        // 请在phpunit.xml.dist中设置环信账号
+        $easemob = Yii::createObject([
+            'class' => 'nomedia\Easemob\Easemob',
+            'orgName' => isset($_ENV['ORG_NAME']) ? $_ENV['ORG_NAME'] : '',
+            'appName' => isset($_ENV['APP_NAME']) ? $_ENV['APP_NAME'] : '',
+            'clientId' => isset($_ENV['CLIENT_ID']) ? $_ENV['CLIENT_ID'] : '',
+            'clientSecret' => isset($_ENV['CLIENT_SECRET']) ? $_ENV['CLIENT_SECRET'] : '',
+        ]);
+
+
+
+        $ret = $easemob->getGroup();
+
+        var_dump($ret);
+        return $ret;
+
+    }
+
     public function testSendText()
     {
         // 请在phpunit.xml.dist中设置环信账号
