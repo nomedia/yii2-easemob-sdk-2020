@@ -16,7 +16,7 @@ class SendMsgTest extends \PHPUnit\Framework\TestCase
 {
 
 
-    public static function testGetGroup()
+    public function testGetGroup()
     {
 
 
@@ -32,11 +32,11 @@ class SendMsgTest extends \PHPUnit\Framework\TestCase
         ]);
 
 
-
         $ret = $easemob->getGroup();
+        $this->assertArrayHasKey('data', $ret);
 
-        var_dump($ret);
-        return $ret;
+        // var_dump($ret);
+        //return $ret;
 
     }
 
