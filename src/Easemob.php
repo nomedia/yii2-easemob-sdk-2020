@@ -381,6 +381,7 @@ class Easemob extends Component
      */
     public function getData($path)
     {
+
         try {
 
             $response = $this->apiClient->get(
