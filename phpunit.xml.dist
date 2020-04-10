@@ -24,9 +24,9 @@
     </filter>
     <php>
         <!-- test configuration -->
-        <env name="ORG_NAME" value="1114200316065508" />
-        <env name="APP_NAME" value="test" />
-        <env name="CLIENT_ID" value="YXA6Qj6wzAKBQPeJxyPxkvsfdA" />
-        <env name="CLIENT_SECRET" value="YXA6zVRcqF_YWfyBGpJCnU1QoqHMwWs" />
+        <env name="ORG_NAME" value="1115200403157463" />
+        <env name="APP_NAME" value="app" />
+        <env name="CLIENT_ID" value="YXA6nM2hOv9YQ1aZzGYlP7d0ZQ" />
+        <env name="CLIENT_SECRET" value="YXA6w8M6Z2SYukpK4V2WdaXSys9ZvGQ" />
     </php>
 </phpunit>

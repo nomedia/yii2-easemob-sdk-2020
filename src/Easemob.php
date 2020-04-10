@@ -375,6 +375,28 @@ class Easemob extends Component
         }
     }
 
+    /**
+     * 通用获取信息接口
+     * @return bool|mixed
+     */
+    public function getData($path)
+    {
+        try {
+
+            $response = $this->apiClient->get(
+                $this->apiBaseUrl . $path,
+                [
+                    'headers' => ['Authorization' => $this->getTokenHeader()],
+
+                ]
+            );
+            $result = $response->json();
+            return isset($result['data']) ? $result : false;
+        } catch (\Exception $ex) {
+            return false;
+        }
+    }
+
 
     /**
      * 发送普通消息
