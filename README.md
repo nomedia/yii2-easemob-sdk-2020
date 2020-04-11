@@ -15,7 +15,7 @@
 ```json
 {
     "require": {
-       "nomedia/yii2-easemob-sdk": "dev-master"
+    "nomedia/yii2-easemob-sdk-2020": "^1.1",
     }
 }
 ```
