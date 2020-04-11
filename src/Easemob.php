@@ -400,6 +400,32 @@ class Easemob extends Component
 
 
     /**
+     * 通用post获取信息接口
+     * @return bool|mixed
+     */
+    public function postData($path, $data)
+    {
+
+        try {
+            // $path = self::PATH_SEND_MESSAGES;
+
+
+            $response = $this->apiClient->post(
+                $this->apiBaseUrl . $path,
+                [
+                    'headers' => ['Authorization' => $this->getTokenHeader()],
+                    'json' => $data,
+                ]
+            );
+            $result = $response->json();
+            return isset($result['data']) ? $result : false;
+        } catch (\Exception $ex) {
+            return false;
+        }
+    }
+
+
+    /**
      * 发送普通消息
      * @param string $target_type 消息目标类型，users 给用户发消息，chatgroups 给群发消息，chatrooms 给聊天室发消息
      * @param array $target 消息目标数组
